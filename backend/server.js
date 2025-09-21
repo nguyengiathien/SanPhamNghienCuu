@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const cookieParser = require('cookie-parser');
+
 
 
 const app = express();
@@ -12,7 +12,7 @@ const SECRET_KEY = 'abcd'
 //middleware
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
-app.use(cookieParser);
+
 
 //database
 let users = [];
@@ -32,9 +32,9 @@ app.post('/api/auth/signup', async (req, res) => {
 
         const existingUser = users.find(u => u.email === email);
         if (existingUser) {
-            return res.status(400).json({ message: 'Email đã được sử dụng' });
+            return res.status(409).json({ message: 'Email đã được sử dụng' });
         }
-
+        console.log(existingUser);
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -46,7 +46,7 @@ app.post('/api/auth/signup', async (req, res) => {
             password: hashedPassword
         };
         users.push(newUser);
-
+        console.log("📌 Danh sách user hiện tại:", users);
         //
         const token = jwt.sign({ id: newUser.id, email: newUser.email }, SECRET_KEY, { expiresIn: '5h' });
 
@@ -103,9 +103,6 @@ app.get('/api/users', authenticateToken, (req, res) => {
     res.json(safeUsers);
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend chạy tại http://localhost:${PORT}`);
-});
 
 // ====== Database giả lập cho khóa học ======
 let courses = [
@@ -134,7 +131,7 @@ let courses = [
 // progress tính theo % số bài học đã hoàn thành
 let userCourses = [
     { userId: 1, courseId: 1, progress: 60 },
-    { userId: 1, courseId: 2, progress: 20 },
+    { userId: 2, courseId: 2, progress: 20 },
 ];
 
 // --- API lấy thông tin user hiện tại ---
@@ -181,4 +178,7 @@ app.get("/api/courses/:id/lesson/last", authenticateToken, (req, res) => {
         lessonId: nextLesson.id,
         title: nextLesson.title,
     });
+});
+app.listen(PORT, () => {
+    console.log(`Backend chạy tại http://localhost:${PORT}`);
 });
