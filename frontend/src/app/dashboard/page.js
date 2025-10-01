@@ -52,14 +52,14 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem('token')
-    router.push('/login')
+    router.push('/logIn')
   }
 
   if (loading) return <p className="text-center mt-10 text-gray-600">Đang tải...</p>
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Navbar */}
+      
       <nav className="flex justify-between items-center bg-blue-600 text-white px-6 py-3 shadow-md">
         <div className="space-x-4">
           <button
@@ -69,7 +69,7 @@ export default function Dashboard() {
             Khóa học của tôi
           </button>
           <button
-            onClick={() => router.push('/all-courses')}
+            onClick={() => router.push('/courses')}
             className="hover:underline"
           >
             Tất cả khóa học
@@ -92,12 +92,12 @@ export default function Dashboard() {
         </div>
       </nav>
 
-      {/* Tiêu đề */}
+      
       <h1 className="text-2xl font-bold text-center mt-6 text-gray-800">
         Khóa học của tôi
       </h1>
 
-      {/* Lưới khóa học */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
         {courses.map((course) => (
           <div

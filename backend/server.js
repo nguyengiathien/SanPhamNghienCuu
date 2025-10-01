@@ -15,8 +15,9 @@ app.use(express.json());
 
 
 //database
-let users = [];
-let nextUserId = 1;
+const adminHashedPassword = bcrypt.hashSync("123", 10);
+let users = [{ id: 1, name: "admin", email: "admin@gmail.com", password: adminHashedPassword }];
+let nextUserId = 2;
 
 //API dang ki
 app.post('/api/auth/signup', async (req, res) => {
@@ -61,7 +62,7 @@ app.post('/api/auth/signup', async (req, res) => {
     }
 });
 
-
+// API đăng nhập
 app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body;
     const user = users.find(u => u.email === email);
@@ -103,6 +104,83 @@ app.get('/api/users', authenticateToken, (req, res) => {
     res.json(safeUsers);
 });
 
+// APP reviews
+app.post("/api/courses/:id/reviews", authenticateToken, (req, res) => {
+    const { rating, comment } = req.body;
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) return res.status(404).json({ message: "Không tìm thấy khóa học" });
+
+    const review = {
+        userId: req.user.id,
+        name: users.find(u => u.id === req.user.id)?.name || "Ẩn danh",
+        rating,
+        comment,
+        date: new Date()
+    };
+    course.reviews = course.reviews || [];
+    course.reviews.push(review);
+
+    res.json({ message: "Đánh giá thành công", review });
+});
+
+//API lọc trong trang courses
+app.get("/api/categories", (req, res) => {
+  const uniqueCategories = [...new Set(courses.map(c => c.category || "Khác"))];
+  res.json(uniqueCategories);
+});
+
+// --- API đăng ký khóa học ---
+app.post("/api/courses/:id/register", authenticateToken, (req, res) => {
+    const courseId = parseInt(req.params.id);
+    const userId = req.user.id;
+
+    // kiểm tra khóa học có tồn tại không
+    const course = courses.find(c => c.id === courseId);
+    if (!course) {
+        return res.status(404).json({ message: "Không tìm thấy khóa học" });
+    }
+
+    // kiểm tra user đã đăng ký chưa
+    const exists = userCourses.find(uc => uc.userId === userId && uc.courseId === courseId);
+    if (exists) {
+        return res.status(400).json({ message: "Bạn đã tham gia khóa học này rồi" });
+    }
+
+    // thêm userCourses mới
+    userCourses.push({ userId, courseId, progress: 0 });
+
+    res.json({ message: "Đăng ký khóa học thành công!" });
+});
+
+// --- API lấy chi tiết khóa học ---
+app.get("/api/courses/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const course = courses.find(c => c.id === id);
+
+    if (!course) {
+        return res.status(404).json({ message: "Không tìm thấy khóa học" });
+    }
+
+    // tính tiến độ
+    const total = course.lessons.length;
+    const completed = course.lessons.filter(l => l.completed).length;
+    const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+    res.json({
+        id: course.id,
+        title: course.title,
+        image: `http://localhost:${PORT}${course.image}`,
+        description: course.description || "Khoá học hấp dẫn",
+        price: course.price || "Miễn phí",
+        instructor: course.instructor || "Giảng viên chưa rõ",
+        duration: course.duration || "5 giờ",
+        rating: course.rating || 4.5,
+        progress, // thêm tiến độ
+        lessons: course.lessons,
+        reviews: course.reviews || []
+    });
+});
+
 
 // ====== Database giả lập cho khóa học ======
 let courses = [
@@ -110,6 +188,9 @@ let courses = [
         id: 1,
         title: "React Cơ Bản",
         image: "/images/react-basic.jpg",
+        category: "Công nghệ",
+        level: "Cơ bản",
+        price: 500,
         lessons: [
             { id: 1, title: "Giới thiệu", completed: true },
             { id: 2, title: "Component cơ bản", completed: false },
@@ -119,10 +200,26 @@ let courses = [
         id: 2,
         title: "Next.js Nâng Cao",
         image: "/images/next-advanced.jpg",
+        category: "Công nghệ",
+        level: "Nâng cao",
+        price: 400,
         lessons: [
             { id: 1, title: "Routing", completed: true },
             { id: 2, title: "Data Fetching", completed: true },
             { id: 3, title: "Server Actions", completed: false },
+        ],
+    },
+    {
+        id: 3,
+        title: "Giải tích 1",
+        image: "/images/GT.jpg",
+        category: "Toán học",
+        level: "Nâng cao",
+        price: 0,
+        lessons: [
+            { id: 1, title: "Hàm số", completed: true },
+            { id: 2, title: "Chuỗi", completed: true },
+            { id: 3, title: "Vô cùng bé, vô cùng lớn", completed: false },
         ],
     },
 ];
@@ -179,6 +276,63 @@ app.get("/api/courses/:id/lesson/last", authenticateToken, (req, res) => {
         title: nextLesson.title,
     });
 });
+// --- API lấy tất cả khóa học ---
+app.get("/api/courses", (req, res) => {
+    const { keyword, category, level } = req.query;
+
+    let result = [...courses];
+
+    // Tìm kiếm theo từ khóa trong tiêu đề
+    if (keyword) {
+        result = result.filter(c =>
+            c.title.toLowerCase().includes(keyword.toLowerCase())
+        );
+    }
+
+    // Lọc theo danh mục (nếu có)
+    if (category) {
+        result = result.filter(c => c.category === category);
+    }
+
+    // Lọc theo cấp độ (nếu có)
+    if (level) {
+        result = result.filter(c => c.level === level);
+    }
+
+    // Trả về danh sách khóa học (ẩn lessons chi tiết để nhẹ hơn)
+    const formatted = result.map(c => ({
+        id: c.id,
+        title: c.title,
+        image: `http://localhost:${PORT}${c.image}`,
+        category: c.category || "Chưa phân loại",
+        level: c.level || "Cơ bản"
+    }));
+
+    res.json(formatted);
+});
+// --- API lấy chi tiết khóa học ---
+app.get("/api/courses/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const course = courses.find(c => c.id === id);
+
+    if (!course) {
+        return res.status(404).json({ message: "Không tìm thấy khóa học" });
+    }
+
+    res.json({
+        id: course.id,
+        title: course.title,
+        image: `http://localhost:${PORT}${course.image}`,
+        description: course.description || "Khoá học hấp dẫn",
+        price: course.price || "Miễn phí",
+        instructor: course.instructor || "Giảng viên chưa rõ",
+        duration: course.duration || "5 giờ",
+        rating: course.rating || 4.5,
+        lessons: course.lessons,
+        reviews: course.reviews || []
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Backend chạy tại http://localhost:${PORT}`);
 });

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
@@ -9,7 +9,7 @@ export default function Login() {
   });
 
   const [message, setMessage] = useState("");
-
+  const router = useRouter();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -33,6 +33,7 @@ export default function Login() {
         setMessage("Đăng nhập thành công!");
         localStorage.setItem("token", data.token);
         console.log("User info:", data.user);
+        router.push("/dashboard");
       } else {
         setMessage(data.message || "Sai email hoặc mật khẩu");
       }
