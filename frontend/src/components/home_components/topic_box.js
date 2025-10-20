@@ -1,4 +1,4 @@
-import TopicTag from "@/components/main_components/topic_tag";
+import TopicTag from "@/components/home_components/topic_tag";
 
 export default function TopicBox() {
     const topics = ["Math", "Science", "History", "Art", "Technology", "Literature", "Music", "Sports"];

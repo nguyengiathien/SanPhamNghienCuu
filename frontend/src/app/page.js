@@ -1,10 +1,10 @@
 import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar_unlog';
-import Hero from '@/components/main_components/hero';
+import Hero from '@/components/home_components/hero';
 import Courses from '@/components/courses';
-import TopicBox from '@/components/main_components/topic_box';
-import TopCourses from '@/components/main_components/top_courses';
-import Offers from '@/components/main_components/offers'; 
+import TopicBox from '@/components/home_components/topic_box';
+import TopCourses from '@/components/home_components/top_courses';
+import Offers from '@/components/home_components/offers'; 
 
 import { Container } from 'postcss';
 
