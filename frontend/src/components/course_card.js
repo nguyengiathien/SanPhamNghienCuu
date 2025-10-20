@@ -6,6 +6,7 @@ export default function CourseItem({ course }) {
             <p className="text-gray-600 text-sm mb-4">{course.description}</p>
             <button className="enroll-button bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition-colors duration-300">
                 Enroll Now
+                {/* GV: View */}
             </button>
             <p className="text-gray-600 text-sm absolute bottom-4 right-4">{course.cost}</p>
         </div>

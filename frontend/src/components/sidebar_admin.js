@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faUser, faCog, faChalkboard, faLinesLeaning, faPhone, faClipboardQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faUser, faUsers, faChalkboard, faLinesLeaning, faCog, faClipboardQuestion, faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar() {
     return (
@@ -11,30 +11,25 @@ export default function Sidebar() {
                 <ul>
                     <li className="group/icon mb-2 absolute top-0 left-5 flex flex-row items-center">
                         <FontAwesomeIcon icon={faHouse} className="mr-2 p-[8px] text-white z-1 bg-indigo-800 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#home" className="text-indigo-800 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Home</a>
+                        <a href="#home" className="text-indigo-800 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Home</a>
                     </li>
                     <li className="group/icon mb-2 absolute top-17 left-5 flex flex-row items-center">
-                        <FontAwesomeIcon icon={faChalkboard} className="mr-2 p-[8px] text-white z-1 bg-indigo-700 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#classes" className="text-indigo-700 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Classes</a>
+                        <FontAwesomeIcon icon={faUsers} className="mr-2 p-[8px] text-white z-1 bg-indigo-700 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
+                        <a href="#classes" className="text-indigo-700 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Users Management</a>
                     </li>
                     <li className="group/icon mb-2 absolute top-34 left-5 flex flex-row items-center">
                         <FontAwesomeIcon icon={faLinesLeaning} className="mr-2 p-[8px] text-white z-1 bg-indigo-600 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#lessons" className="text-indigo-600 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Courses</a>
+                        <a href="#lessons" className="text-indigo-600 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Courses Management</a>
                     </li>
                     <li className="group/icon mb-2 absolute top-51 left-5 flex flex-row items-center">
-                        <FontAwesomeIcon icon={faClipboardQuestion} className="mr-2 p-[8px] text-white z-1 bg-indigo-500 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#lessons" className="text-indigo-600 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Tests</a>
-                    </li>
-                    <li className="group/icon mb-2 absolute top-68 left-5 flex flex-row items-center">
-                        <FontAwesomeIcon icon={faPhone} className="mr-2 p-[8px] text-white z-1 bg-indigo-400 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#contact" className="text-indigo-500 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Contact</a>
+                        <FontAwesomeIcon icon={faChalkboard} className="mr-2 p-[8px] text-white z-1 bg-indigo-500 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
+                        <a href="#lessons" className="text-indigo-500 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Classes Management</a>
                     </li>
                 </ul>
             </nav>
             <div className="group/icon absolute bottom-24 left-[50%] translate-x-[-50%] flex flex-row items-center">
                 <FontAwesomeIcon icon={faUser} className="p-[6px] text-indigo-400 z-1 bg-white rounded-[50%] aspect-square w-[35px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.4)] transition-shadow duration-300" />
                 <div className="flex flex-col gap-2 absolute left-15 bg-white shadow-[0_5px_10px_var(--tw-shadow-color,_rgba(0,_0,_0,.2))] p-2 opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:opacity-100 hover:flex rounded-lg">
-                    <a href="#profile" className="text-white text-center shadow-[0_5px_10px_rgba(1,1,1,0.3)] transition-[colors, shadow] duration-300 hover:shadow-none hover:text-gray-800 z-0 font-semibold bg-indigo-500 rounded-sm py-1 px-2">Profile</a>
                     <a href="#" className="text-white text-center shadow-[0_5px_10px_rgba(1,1,1,0.3)] transition-[colors, shadow] duration-300 hover:shadow-none hover:text-gray-800 z-0 font-semibold bg-indigo-500 rounded-sm py-1 px-2">Logout?</a>
                 </div>
             </div>
