@@ -31,7 +31,7 @@ export default function Sidebar() {
                 <FontAwesomeIcon icon={faUser} className="p-[6px] text-indigo-400 z-1 bg-white rounded-[50%] aspect-square w-[35px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.4)] transition-shadow duration-300" />
                 <div className="flex flex-col gap-2 absolute left-15 bg-white shadow-[0_5px_10px_var(--tw-shadow-color,_rgba(0,_0,_0,.2))] p-2 opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:opacity-100 hover:flex rounded-lg">
                     <a href="#profile" className="text-white text-center shadow-[0_5px_10px_rgba(1,1,1,0.3)] transition-[colors, shadow] duration-300 hover:shadow-none hover:text-gray-800 z-0 font-semibold bg-indigo-500 rounded-sm py-1 px-2">Login?</a>
-                    <a href="#register" className="text-white text-center shadow-[0_5px_10px_rgba(1,1,1,0.3)] transition-[colors, shadow] duration-300 hover:shadow-none hover:text-gray-800 z-0 font-semibold bg-indigo-500 rounded-sm py-1 px-2">Register?</a>
+                    <a href="/signup" className="text-white text-center shadow-[0_5px_10px_rgba(1,1,1,0.3)] transition-[colors, shadow] duration-300 hover:shadow-none hover:text-gray-800 z-0 font-semibold bg-indigo-500 rounded-sm py-1 px-2">Register?</a>
                 </div>
             </div>
             <div className="group/icon absolute bottom-10 left-[50%] translate-x-[-50%] flex flex-row items-center">

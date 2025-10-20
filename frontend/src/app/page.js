@@ -11,7 +11,6 @@ import { Container } from 'postcss';
 export default function Home() {
   return (
     <>
-      <body>
         <div id="container" className=" min-h-screen">
           <Sidebar />
           <main className="bg-white w-full z-2 pl-[50px]">
@@ -23,7 +22,6 @@ export default function Home() {
             <Footer />
           </main>
         </div>
-      </body>
     </>
   );
 }
