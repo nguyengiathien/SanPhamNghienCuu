@@ -27,7 +27,7 @@ export default function ContainerSelectionPanelLanguages() {
             <ul>
                 {languages.map((language, index) => (
                     index < 5 && (
-                    <li key={language.id} className="text-xs leading-normal">
+                    <li key={language.id} className="text-xs leading-normal flex items-center gap-1">
                         <input type="checkbox" /> {language.title}
                     </li>
                 )))}

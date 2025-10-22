@@ -48,7 +48,7 @@ export default function ContainerSelectionPanelTopics() {
                         <h4 className="font-medium text-sm leading-normal">{category.title}</h4>
                         <ul>
                             {category.topics.map(topic => (
-                                <li key={topic.id} className="text-xs leading-normal">
+                                <li key={topic.id} className="text-xs leading-normal flex items-center gap-1">
                                     <input type="checkbox" /> {topic.title}
                                 </li>
                             ))}
