@@ -1,11 +1,12 @@
 'use client'
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons"
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 
 export default function HeroTopicsCategory() {
     const [openedCategory, setOpenedCategory] = useState(0);
     const [chosenTopic, setChosenTopic] = useState(null);
+    const [hoveredTopic, setHoveredTopic] = useState(null);
 
     const topicsCategory = [
         {
@@ -49,13 +50,23 @@ export default function HeroTopicsCategory() {
 
 
     return (
-        <div className="relative">
-            <h2 className="text-base font-bold mr-2 py-3">Popular Topics</h2>
-            <div className={`text-justify px-3  list-none p-2 bg-white shadow-md mb-4 absolute top-[2px] left-32 z-1 w-[180px] cursor-pointer border border-gray-300 outline-none after:content-['▼'] after:${openedCategory ? 'rotate-180' : ''} rounded-full ${openedCategory ? 'h-auto' : 'h-12 overflow-hidden'}`} onClick={() => setOpenedCategory(!openedCategory)}>
-                <div className="cursor-pointer w-max p-[2px] rounded-full hover:bg-gray-300">All Topics</div>
-                {topicsCategory.map((topic) => (
-                    <div key={topic.id} className="cursor-pointer w-max p-[2px] rounded-full hover:bg-gray-300">
-                        {topic.title}
+        <div className="relative flex flex-row items-center justify-center">
+            <h2 className="text-base font-bold mr-4 py-3 text-nowrap">Popular Topics</h2>
+            <div className="w-full border border-indigo-300 rounded-lg flex flex-row items-center justify-between shadow-md bg-gradient-to-r from-white to-indigo-200">
+                {topicsCategory.map((category) => (
+                    <div key={category.id} className="relative after:block after:absolute after:top-1/2 after:right-0 after:translate-y-[-50%] after:w-[1px] after:h-6 after:bg-indigo-300 last:after:hidden" onMouseEnter={() => setHoveredTopic(category.id)} onMouseLeave={() => setHoveredTopic(null)}>
+                        <button className={`w-full flex flex-col justify-between items-center px-4 py-3 hover:bg-indigo-300 hover:rounded-md`} onClick={() => setOpenedCategory(openedCategory === category.id ? 0 : category.id)} >
+                            <span className="font-medium">{category.title}</span>
+                        </button>
+                        {(openedCategory === category.id || hoveredTopic === category.id) && (
+                            <div className="py-2 absolute border border-indigo-200 bg-gradient-to-r from-white to-indigo-100 left-0 top-12 shadow-md z-10 inline-block rounded-sm">
+                                {category.topics.map((topic) => (
+                                    <div key={topic.id} className="cursor-pointer px-4 py-1 hover:bg-indigo-300 w-full text-justify text-nowrap" onClick={() => setChosenTopic(topic.title)}>
+                                        {topic.title}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
