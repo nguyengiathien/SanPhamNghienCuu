@@ -1,4 +1,4 @@
-import CurrentClassesCard from "@/components/provider_home_components/current_courses_card";
+import CurrentClassesCard from "@/components/provider/home_components/current_courses_card";
 
 export default function CurrentCourses() {
     return (

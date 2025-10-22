@@ -1,8 +1,8 @@
 import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar_admin';
-import Hero from '@/components/admin_home_components/hero';
-import ChartTest from '@/components/admin_home_components/chart_test';
-import DashboardChart from '@/components/admin_home_components/chart_dashboard_test';
+import Hero from '@/components/admin/home_components/hero';
+import ChartTest from '@/components/admin/home_components/chart_test';
+import DashboardChart from '@/components/admin/home_components/chart_dashboard_test';
 
 import { Container } from 'postcss';
 

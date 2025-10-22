@@ -19,7 +19,7 @@ export default function Sidebar() {
                     </li>
                     <li className="group/icon mb-2 absolute top-34 left-5 flex flex-row items-center">
                         <FontAwesomeIcon icon={faLinesLeaning} className="mr-2 p-[8px] text-white z-1 bg-indigo-600 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="#lessons" className="text-indigo-600 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Courses</a>
+                        <a href="/courses" className="text-indigo-600 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm">Courses</a>
                     </li>
                     <li className="group/icon mb-2 absolute top-51 left-5 flex flex-row items-center">
                         <FontAwesomeIcon icon={faPhone} className="mr-2 p-[8px] text-white z-1 bg-indigo-500 rounded-[50%] aspect-square w-[40px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />

@@ -1,12 +1,12 @@
 import Footer from '@/components/footer';
 import Sidebar from '@/components/sidebar_provider';
-import Hero from '@/components/provider_home_components/hero';
+import Hero from '@/components/provider/home_components/hero';
 import Courses from '@/components/courses';
 import TopicBox from '@/components/home_components/topic_box';
 import TopCourses from '@/components/home_components/top_courses';
 import Offers from '@/components/home_components/offers'; 
-import CurrentClasses from '@/components/provider_home_components/current_classes';
-import CurrentCourses from '@/components/provider_home_components/current_courses';
+import CurrentClasses from '@/components/provider/home_components/current_classes';
+import CurrentCourses from '@/components/provider/home_components/current_courses';
 
 import { Container } from 'postcss';
 
