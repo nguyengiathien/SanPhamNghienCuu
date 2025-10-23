@@ -1,6 +1,6 @@
 import CourseCard from "@/components/courses_components/container_content_courses_card";
 
-export default function ContainerSelectionPanelDuration() {
+export default function ContainerSelectionPanelDuration(role) {
     const courses = [
         { id: 1, title: "Course 1", description: "Description 1", imageUrl: "/course1.png", author: "Author 1", rating: 4.5, cost: 100 },
         { id: 2, title: "Course 2", description: "Description 2", imageUrl: "/course2.png", author: "Author 2", rating: 4.0, cost: 150 },
@@ -27,7 +27,7 @@ export default function ContainerSelectionPanelDuration() {
         <div className="@container">
             <div className="container-contents-courses-wrapper grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 py-4">
                 {courses.map((course) => (
-                    <CourseCard key={course.id} course={course} />
+                    <CourseCard key={course.id} course={course} role={role}/>
                 ))}
             </div>
         </div>  

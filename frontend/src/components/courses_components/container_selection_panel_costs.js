@@ -1,3 +1,4 @@
+"use client";
 export default function ContainerSelectionPanelCosts() {
     const costs = [
         {id: 1, title: "Free"},

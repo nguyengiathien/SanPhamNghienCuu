@@ -6,3 +6,9 @@
     --font-lobster: 'Lobster', cursive;
     --font-lexend: 'Lexend Deca', sans-serif;    
 }
+
+.svg-inline--fa {
+    height: unset;
+    width: 40px;
+    aspect-ratio: 1 / 1;
+}

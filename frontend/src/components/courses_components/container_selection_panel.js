@@ -2,6 +2,7 @@ import ContainerSelectionPanelTopics from "./container_selection_panel_topics";
 import ContainerSelectionPanelLanguages from "./container_selection_panel_languages";
 import ContainerSelectionPanelCosts from "./container_selection_panel_costs";
 import ContainerSelectionPanelDuration from "./container_selection_panel_duration";
+import ContainerSelectionExpandedBox from "./container_selection_expanded_box";
 
 export default function ContainerSelectionPanel() {
     return (
@@ -11,6 +12,7 @@ export default function ContainerSelectionPanel() {
             <ContainerSelectionPanelCosts />
             <ContainerSelectionPanelDuration />
             <ContainerSelectionPanelLanguages />
+            <ContainerSelectionExpandedBox />
         </div>
     );
 }

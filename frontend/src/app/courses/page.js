@@ -10,7 +10,7 @@ export default function CoursesPage() {
         <Sidebar />
         <main className="bg-white w-full z-2 pl-[50px]">          
           <Hero />
-          <Container_ />
+          <Container_ role="unlog"/>
           <Footer />
         </main>
       </div>
