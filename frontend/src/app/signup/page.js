@@ -6,9 +6,12 @@ export default function Signup() {
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        role: 'user'
     })
     const [message, setMessage] = useState("");
+    const [isError, setIsError] = useState(false);
+    const { isLoading, setIsLoading } = useState(false)
 
     const handleChange = (e) => {
         setFormData({
@@ -17,13 +20,47 @@ export default function Signup() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setMessage("");
+
         if (formData.password !== formData.confirmPassword) {
             setMessage("Mật khẩu không khớp");
             return;
         }
-        setMessage("Đăng ký thành công");
+        try {
+            setIsLoading(true);
+            const res = await fetch("http://localhost:8080/api/auth/signup", {
+                method: "POST",
+                headers: {
+                    "Content_Type": "Application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                setMessage(data.message || "Đăng ký thất bại");
+                setIsError(true);
+            } else {
+                setMessage(data.message);
+                setIsError(false);
+                // Reset form
+                setFormData({
+                    name: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    role: 'user'
+                });
+            }
+        } catch (err) {
+            setMessage("Lỗi kết nối đến server");
+            setIsError(true);
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -34,12 +71,13 @@ export default function Signup() {
                 </h1>
 
                 {message && (
-                    <p className={`mb-4 text-center font-medium ${message.includes("khớp") ? "text-red-600" : "text-green-600"}`}>
+                    <p className={`mb-4 text-center font-medium ${isError ? "text-red-600" : "text-green-600"}`}>
                         {message}
                     </p>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Họ tên */}
                     <div>
                         <label className="block text-[#00587C] font-semibold mb-1">Họ tên</label>
                         <input
@@ -52,6 +90,7 @@ export default function Signup() {
                         />
                     </div>
 
+                    {/* Email */}
                     <div>
                         <label className="block text-[#00587C] font-semibold mb-1">Email</label>
                         <input
@@ -64,6 +103,7 @@ export default function Signup() {
                         />
                     </div>
 
+                    {/* Mật khẩu */}
                     <div>
                         <label className="block text-[#00587C] font-semibold mb-1">Mật khẩu</label>
                         <input
@@ -76,6 +116,7 @@ export default function Signup() {
                         />
                     </div>
 
+                    {/* Xác nhận mật khẩu */}
                     <div>
                         <label className="block text-[#00587C] font-semibold mb-1">Xác nhận mật khẩu</label>
                         <input
@@ -88,14 +129,33 @@ export default function Signup() {
                         />
                     </div>
 
+                    {/* Vai trò */}
+                    <div>
+                        <label className="block text-[#00587C] font-semibold mb-1">Vai trò</label>
+                        <select
+                            name="role"
+                            value={formData.role}
+                            onChange={handleChange}
+                            className="w-full border border-[#71D9FF] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00ABFD]"
+                        >
+                            <option value="user">Người dùng</option>
+                            <option value="admin">Quản trị viên</option>
+                        </select>
+                    </div>
+
+                    {/* Nút đăng ký */}
                     <button
                         type="submit"
-                        className="w-full bg-[#00ABFD] hover:bg-[#00587C] text-white font-semibold py-2 rounded-lg transition-colors"
+                        disabled={isLoading}
+                        className={`w-full font-semibold py-2 rounded-lg transition-colors ${isLoading
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-[#00ABFD] hover:bg-[#00587C] text-white"
+                            }`}
                     >
-                        Đăng ký
+                        {isLoading ? "Đang tải..." : "Đăng ký"}
                     </button>
                 </form>
             </div>
         </div>
-    )
+    );
 }
