@@ -1,8 +1,8 @@
 "use client";
 
-
-export default function CourseCard({ course, role }) {
+export default function CourseCard({ course }) {
     const userData = JSON.parse(localStorage.getItem('user'));
+
     return (
         <div className="course-card border border-gray-300 rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow duration-300 w-[13rem] mx-auto relative">
             <img src={`${course.imageUrl}`} alt={course.title} className="w-full h-26 object-cover rounded mb-4" />
