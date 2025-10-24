@@ -1,5 +1,5 @@
 import Footer from '@/components/footer';
-import Sidebar from '@/components/sidebar_admin';
+import Sidebar from '@/components/sidebar';
 import Hero from '@/components/admin/home_components/hero';
 import ChartTest from '@/components/admin/home_components/chart_test';
 import DashboardChart from '@/components/admin/home_components/chart_dashboard_test';

@@ -1,4 +1,4 @@
-export default function ContainerContentsPageNumber() {
+export default function PageNumber() {
     return (
         <div className="container-contents-page-number flex justify-center items-center my-6">
             {/* Content for Container Contents Page Number goes here */}

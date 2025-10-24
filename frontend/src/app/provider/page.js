@@ -1,5 +1,5 @@
 import Footer from '@/components/footer';
-import Sidebar from '@/components/sidebar_provider';
+import Sidebar from '@/components/sidebar';
 import Hero from '@/components/provider/home_components/hero';
 import Courses from '@/components/courses';
 import TopicBox from '@/components/home_components/topic_box';

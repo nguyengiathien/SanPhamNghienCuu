@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar_student";
+import Sidebar from "@/components/sidebar";
 import Footer from "@/components/footer";
 import Hero from "@/components/student/courses_components/hero";
 import Container_ from "@/components/courses_components/container";
