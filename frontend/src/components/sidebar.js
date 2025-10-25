@@ -23,7 +23,7 @@ export default function Sidebar() {
                 <ul className="flex flex-col gap-4 absolute left-6 top-0">
                     <li className="group/icon mb-2 left-5 flex flex-row items-center">
                         <FontAwesomeIcon icon={faHouse} className="mr-2 p-[8px] text-white z-1 bg-indigo-400 rounded-[50%] !w-[22px] !h-[22px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />
-                        <a href="/provider/" className="text-indigo-800 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Trang chủ</a>
+                        <a href={`${userData !== undefined && userData !== null && userData.role === "admin" ? "/admin" : "/"}`} className="text-indigo-800 hover:text-gray-800 absolute left-3 z-0 py-1 pl-3 pr-2 rounded-r-full font-semibold bg-white shadow-[0_2px_4px_rgba(1,1,1,0.2)] opacity-0 transition delay-150 duration-300 ease-in-out group-hover/icon:translate-x-5 group-hover/icon:opacity-100 hover:block text-sm text-nowrap">Trang chủ</a>
                     </li>
                     <li className={`group/icon mb-2  left-5 flex flex-row items-center ${userData !== null && userData !== undefined && userData.role === "admin" ? "hidden" : "show"}`}>
                         <FontAwesomeIcon icon={faChalkboard} className="mr-2 p-[8px] text-white z-1 bg-indigo-400 rounded-[50%] !w-[22px] !h-[22px] hover:shadow-[0_2px_4px_rgba(1,1,1,0.2)] transition-shadow duration-300" />

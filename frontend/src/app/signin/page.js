@@ -43,7 +43,7 @@ export default function SigninPage() {
             setMessage('Đăng nhập thành công');
             if (data.user.role === "admin") {
                 setTimeout(() => router.push('/admin/'), 1000);
-            }else {
+            } else {
                 setTimeout(() => router.push('/'), 1000);
             }
             // } else if (data.user.role === "student") {
@@ -51,62 +51,63 @@ export default function SigninPage() {
             // } else if (data.user.role === "admin") {
             //     setTimeout(() => router.push('/admin'), 1000)
             // }
-        
-} catch (err) {
-    console.error(err);
-    setMessage('Lỗi kết nối server')
-}
+
+        } catch (err) {
+            console.error(err);
+            setMessage('Lỗi kết nối server')
+        }
     }
 
-return (
-    <div className="min-h-screen flex items-center justify-center bg-[#CDF1FF]">
-        <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-[#71D9FF]">
-            <div>
-                <h1 className="text-2xl font-bold text-[#003140] mb-6 text-center">Đăng nhập</h1>
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-indigo-300/70 from-50% to-indigo-400 to-40%">
+            <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-indigo-300">
+                <div>
+                    <h1 className="w-fit m-auto text-2xl font-bold mb-6 text-center bg-clip-text bg-gradient-to-tr from-indigo-600 from-20% via-indigo-200 via-40% to-indigo-700 to-70% text-transparent">Đăng nhập</h1>
+                </div>
+                {message && (
+                    <p
+                        className={`mb-4 text-center font-medium ${message.includes('thành công') ? 'text-green-600' : 'text-red-600'
+                            }`}
+                    >
+                        {message}
+                    </p>
+                )}
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div>
+                        <label className="block text-indigo-900/80 font-semibold mb-1">
+                            Email:
+                        </label>
+                        <input
+                            type='email'
+                            name='email'
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full border border-indigo-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-indigo-900/80 font-semibold mb-1">
+                            Mật khẩu:
+                        </label>
+                        <input
+                            type='password'
+                            name='password'
+                            value={formData.password}
+                            onChange={handleChange}
+                            className="w-full border border-indigo-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                            required
+                        />
+                    </div>
+                    <button type="submit" className="w-full bg-gradient-to-tr from-indigo-400/70 to-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 transition-all shadow-md">
+                        Đăng nhập
+                    </button>
+                </form>
+                <p className="text-center text-sm text-gray-600 mt-4">Chưa có tài khoản? <a href="/signup" className="text-indigo-600 hover:underline font-medium">Đăng ký</a></p>
+                <p className="text-center text-sm text-gray-600 mt-2"><a href="/" className="text-indigo-600 hover:underline font-medium">Trang chủ</a></p>
             </div>
-            {message && (
-                <p
-                    className={`mb-4 text-center font-medium ${message.includes('thành công') ? 'text-green-600' : 'text-red-600'
-                        }`}
-                >
-                    {message}
-                </p>
-            )}
-            <form className="space-y-4" onSubmit={handleSubmit}>
-                <div>
-                    <label className="block text-[#00587C] font-semibold mb-1">
-                        Email:
-                    </label>
-                    <input
-                        type='email'
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="w-full border border-[#71D9FF] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00ABFD]"
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label className="block text-[#00587C] font-semibold mb-1">
-                        Mật khẩu:
-                    </label>
-                    <input
-                        type='password'
-                        name='password'
-                        value={formData.password}
-                        onChange={handleChange}
-                        className="w-full border border-[#71D9FF] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#00ABFD]"
-                        required
-                    />
-                </div>
-                <button type="submit" className="w-full bg-[#00ABFD] hover:bg-[#00587C] text-white font-semibold py-2 rounded-lg transition-colors">
-                    Đăng nhập
-                </button>
-            </form>
-            <p className="text-center text-sm text-gray-600 mt-4">Chưa có tài khoản? <a href="/signup" className="text-[#00ABFD] hover:underline">Đăng ký</a></p>
         </div>
-    </div>
 
-)
+    )
 }
