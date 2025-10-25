@@ -1,5 +1,5 @@
 import ContainerContentsSearchTag from "./container_contents_search_tag";
-import CourseCard from "@/components/courses_components/container_content_courses_card";
+import CourseCard from "@/components/course_card";
 import PageNumber from "@/components/page_number";
 
 export default function ContainerContents() {
@@ -30,7 +30,7 @@ export default function ContainerContents() {
             {/* Content for Container Contents goes here */}
             <ContainerContentsSearchTag />
             <div className="@container">
-                <div className="container-contents-courses-wrapper grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 py-4">
+                <div className="container-contents-courses-wrapper grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 py-4">
                     {courses.map((course) => (
                         <CourseCard key={course.id} course={course} />
                     ))}

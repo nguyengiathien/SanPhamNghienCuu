@@ -41,13 +41,16 @@ export default function SigninPage() {
             localStorage.setItem('user', JSON.stringify(data.user)); //local -> db
 
             setMessage('Đăng nhập thành công');
-            if (data.user.role === "provider") {
-                setTimeout(() => router.push('/provider'), 1000)
-            } else if (data.user.role === "student") {
-                setTimeout(() => router.push('/student'), 1000)
-            } else if (data.user.role === "admin") {
-                setTimeout(() => router.push('/admin'), 1000)
+            if (data.user.role === "admin") {
+                setTimeout(() => router.push('/admin/'), 1000);
+            }else {
+                setTimeout(() => router.push('/'), 1000);
             }
+            // } else if (data.user.role === "student") {
+            //     setTimeout(() => router.push('/student'), 1000)
+            // } else if (data.user.role === "admin") {
+            //     setTimeout(() => router.push('/admin'), 1000)
+            // }
         
 } catch (err) {
     console.error(err);

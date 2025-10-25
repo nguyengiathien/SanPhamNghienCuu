@@ -1,4 +1,4 @@
-import HeroCard from "@/components/home_components/hero_card";
+import HeroCard from "@/components/hero_card";
 import { faLinesLeaning, faChalkboard, faFileLines } from "@fortawesome/free-solid-svg-icons";
 
 
