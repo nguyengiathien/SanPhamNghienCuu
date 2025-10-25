@@ -3,6 +3,7 @@
     "id": 1,
     "name": "admin",
     "email": "admin123@gmail.com",
+    "phone": "",
     "password": "123",
     "role": "admin"
   },
@@ -10,6 +11,7 @@
     "id": 2,
     "name": "provider",
     "email": "provider123@gmail.com",
+    "phone": "",
     "password": "123",
     "role": "provider"
   },
@@ -17,6 +19,7 @@
     "id": 3,
     "name": "student",
     "email": "student123@gmail.com",
+    "phone": "",
     "password": "123",
     "role": "student"
   }
