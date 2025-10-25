@@ -50,14 +50,14 @@ export default function HeroTopicsCategory() {
     return (
         <div className="relative flex flex-row items-center justify-center">
             <h2 className="text-sm font-bold mr-4 py-3 text-nowrap">Popular Topics</h2>
-            <div className="w-full border border-indigo-300 rounded-lg flex flex-row items-center justify-between shadow-md bg-gradient-to-r from-white to-indigo-200">
+            <div className="w-full border border-indigo-300 rounded-lg flex flex-row items-center justify-between shadow-md bg-white">
                 {topicsCategory.map((category) => (
-                    <div key={category.id} className="relative after:block after:absolute after:top-1/2 after:right-0 after:translate-y-[-50%] after:w-[1px] after:h-6 after:bg-indigo-300 last:after:hidden" onMouseEnter={() => setHoveredTopic(category.id)} onMouseLeave={() => setHoveredTopic(null)}>
-                        <button className={`w-full flex flex-col justify-between items-center px-4 py-3 hover:bg-indigo-300 hover:rounded-md`} onClick={() => setOpenedCategory(openedCategory === category.id ? 0 : category.id)} >
-                            <span className="font-medium text-sm">{category.title}</span>
+                    <div key={category.id} className="relative after:block after:absolute after:top-1/2 after:right-0 after:translate-y-[-50%] after:w-[1px] after:h-5 after:bg-indigo-300 last:after:hidden" onMouseEnter={() => setHoveredTopic(category.id)} onMouseLeave={() => setHoveredTopic(null)}>
+                        <button className={`w-full flex flex-col justify-between items-center px-3 py-2 hover:bg-indigo-300 hover:rounded-xs`} onClick={() => setOpenedCategory(openedCategory === category.id ? 0 : category.id)} >
+                            <span className="font-medium text-xs">{category.title}</span>
                         </button>
                         {(openedCategory === category.id || hoveredTopic === category.id) && (
-                            <div className="py-2 absolute border border-indigo-200 bg-gradient-to-r from-white to-indigo-100 left-0 top-11 shadow-md z-10 inline-block rounded-sm">
+                            <div className="py-2 absolute border border-indigo-200 bg-gradient-to-r from-white to-indigo-100 left-0 top-8 shadow-md z-10 inline-block rounded-sm">
                                 {category.topics.map((topic) => (
                                     <div key={topic.id} className="cursor-pointer px-4 py-1 hover:bg-indigo-300 w-full text-justify text-nowrap text-xs" onClick={() => setChosenTopic(topic.title)}>
                                         {topic.title}

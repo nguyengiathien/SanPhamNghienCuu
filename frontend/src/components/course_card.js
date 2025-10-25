@@ -11,7 +11,7 @@ export default function CourseCard({ course }) {
             <button className="enroll-button bg-indigo-500 text-white px-2 py-1 rounded hover:bg-indigo-600 transition-colors duration-300 text-sm">
                 {(userData && userData !== null && userData.role) === "student" || !userData? "Enroll" : "View"}
             </button>
-            <p className="text-gray-600 text-sm absolute bottom-4 right-4">{course.cost}</p>
+            <p className="text-gray-600 text-sm absolute bottom-4 right-4">${course.cost}</p>
         </div>
     );
 }

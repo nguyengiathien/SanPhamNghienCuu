@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Free"
+    },
+    {
+        "id": 2,
+        "title": "From 0 to 100",
+        "min": 0,
+        "max": 100
+    },
+    {
+        "id": 3,
+        "title": "From 100 to 500",
+        "min": 100,
+        "max": 500
+    },
+    {
+        "id": 4,
+        "title": "From 500 to 1,000",
+        "min": 500,
+        "max": 1000
+    },
+    {
+        "id": 5,
+        "title": "Above 1,000",
+        "min": 1000,
+        "max": null
+    }
+]
