@@ -1,8 +1,7 @@
 'use client';
 
 import Footer from '@/components/footer';
-import Sidebar from '@/components/sidebar';
-import Hero from '@/components/home_components/hero';
+import Sidebar from '@/components/header';
 import OfferCard from '@/components/Offer_card';
 import CourseItem from "@/components/course_card";
 import ClassCard from '@/components/class_card';
@@ -14,10 +13,9 @@ export default function Home() {
 
   return (
     <>
-      <div id="container" className=" min-h-screen">
+      <div id="container" className="min-h-screen">
         <Sidebar />
-        <main className="bg-white w-full z-2 pl-[50px]">
-          <Hero />
+        <main className="bg-white w-full z-2 pt-[45px]">
           <section className={`current-courses-section p-8 ${userData && userData !== null && (userData.role === "student" || userData.role === "provider") ? "show" : "hidden"}`}>
             <h1 className="text-2xl font-bold mb-4 text-gray-800">Current Courses</h1>
             <div className="course-list grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

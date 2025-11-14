@@ -1,4 +1,4 @@
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/header";
 import Footer from "@/components/footer";
 import InformationPart from "@/components/contact_components/information_part";
 import FormPart from "@/components/contact_components/form_part";

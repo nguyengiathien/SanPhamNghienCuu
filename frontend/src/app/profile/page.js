@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/header";
 import Footer from "@/components/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
@@ -88,7 +88,7 @@ export default function Profile() {
                 <Sidebar />
                 <div className="h-screen ml-[50px] pt-10 px-15">
                     <div className="min-w-[700px] p-10 rounded-4xl">
-                        <h1 className="text-4xl font-semibold text-center mb-10 font-montserrat bg-clip-text bg-gradient-to-tr from-indigo-900 from-20% via-indigo-600 via-40% to-indigo-800 to-70% text-transparent">Thông tin cá nhân</h1>
+                        <h1 className="text-4xl font-semibold text-center mb-10 font-montserrat text-indigo-500">Thông tin cá nhân</h1>
                         <div className="flex flex-row justify-evenly max-w-[800px] mx-auto gap-3">
                             <div className="inline-block">
                                 <img src={image || "/no_avatar.jpg"}

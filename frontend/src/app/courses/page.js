@@ -1,6 +1,6 @@
 'use client';
 import { useState } from "react";
-import Sidebar from "@/components/sidebar";
+import Sidebar from "@/components/header";
 import Footer from "@/components/footer";
 import Container_ from "@/components/courses_components/container";
 import TopicsCategory from "@/components/courses_components/hero_topics_category";
@@ -17,7 +17,7 @@ export default function CoursesPage() {
     <>
       <div id="container" className=" min-h-screen">
         <Sidebar />
-        <main className="bg-white w-full z-2 pl-[50px]">
+        <main className="bg-white w-full z-2 pt-[45px]">
           <section className="z-0 hero bg-gradient-to-br from-indigo-500 to-white/10 p-4 flex xl:flex-row sm:flex-col items-center xl:justify-evenly sm:justify-center sm:gap-6 xl:gap-15 relative text-center after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-white after:via-indigo-500 after:to-white">
             <TopicsCategory />
             <SearchBox placeholder="Search for topics..." value={searchValue} onSubmit={handleSearchSubmit} />
