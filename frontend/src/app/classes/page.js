@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import ClassCard from "@/components/class_card";
 
 export default function Classes(){
     return(
@@ -7,6 +8,9 @@ export default function Classes(){
             <div className="pt-[45px]">
                 <div className="tools px-8 py-4 w-full flex flex-row justify-end">
                     <button className="w-[150px] p-2 text-white font-medium text-sm bg-indigo-500 rounded-lg">Tạo lớp học</button>
+                </div>
+                <div>
+                    <ClassCard classes={{name: "Lớp học 1"}}/>
                 </div>
             </div>
         </>
