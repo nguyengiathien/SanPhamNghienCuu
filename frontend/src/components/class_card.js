@@ -5,16 +5,18 @@ export default function CurrentClassesCard({ classes }) {
     return (
         <div className="course-item border border-emerald-200 bg-emerald-700 rounded-lg p-3 shadow-xs hover:shadow-md transition-shadow duration-200 w-[250px] h-[120px] mx-auto relative">
             <h3 className="absolute bottom-0 left-0 font-semibold text-lg text-white py-3 px-4">{classes.name}</h3>
-            <div className="relative group/icon">
-                <FontAwesomeIcon icon={faEllipsis} className="text-white !w-[20px] absolute top-0 right-0 transition hover:cursor-pointer" />
-                <div className="bg-white border border-gray-400 shadow-2xs absolute top-0 -right-10">
-                    <li>
-                        <span>Ẩn lớp học</span>
-                    </li>
-                    <li>
-                        
-                    </li>
+            <div className="absolute top-0 right-0">
+                <div className="relative w-[40px] h-[40px] group/icon">
+                    <FontAwesomeIcon icon={faEllipsis} className="text-white !w-[20px] absolute py-3 pr-3 top-0 right-0 transition hover:cursor-pointer" />
+                    <div className="bg-emerald-700 shadow-lg shadow-gray-600 absolute top-6 right-1 text-white text-xs text-nowrap list-none border-none rounded-sm hidden z-10 group-hover/icon:block">
+                        <li className="mb-1 py-1 px-2.5 hover:bg-emerald-800"><span>Ẩn lớp học</span></li>
+                        <li className="mb-1 py-1 px-2.5 hover:bg-emerald-800"><span>Rời khỏi lớp học</span></li>
+                        <li className="mb-1 py-1 px-2.5 hover:bg-emerald-800"><span>Quản lý nhóm</span></li>
+                        <li className="mb-1 py-1 px-2.5 hover:bg-emerald-800"><span>Thêm thành viên</span></li>
+                        <li className="mb-1 py-1 px-2.5 hover:bg-emerald-800"><span>Link tham gia</span></li>
+                    </div>
                 </div>
+
             </div>
             <div className="text-white flex flex-row gap-2 absolute top-0 left-0">
                 <div className="relative group/icon">
