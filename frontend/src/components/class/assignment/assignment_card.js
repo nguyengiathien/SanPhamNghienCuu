@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 
-export default function AssignmentCard({ assignment }) {
+export default function AssignmentCard({ assignment, onClick }) {
     const [isSubmitted, setIsSubmitted] = useState(assignment.isSubmitted || false);
     console.log('Rendering AssignmentCard for:', assignment.title, 'isSubmitted:', isSubmitted);
 
@@ -68,7 +68,7 @@ export default function AssignmentCard({ assignment }) {
     const dueDateDisplay = dueDateObj ? dueDateObj.toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric' }) : (assignment.dueDate || '—');
 
     return (
-        <div className="relative assignment-card border border-gray-300 rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+        <div onClick={() => onClick?.(assignment)} className="relative assignment-card border border-gray-300 rounded-lg p-4 mb-4 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
             <h4 className="text-lg font-semibold text-indigo-900 mb-2">{assignment.title}</h4>
             <p className="text-gray-700 mb-2">{assignment.description}</p>
             <p className="text-sm text-gray-500">Due Date: {dueDateDisplay}</p>

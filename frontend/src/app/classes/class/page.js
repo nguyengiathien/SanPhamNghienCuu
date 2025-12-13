@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faVideo, faCircleExclamation, faDownload, faPlus, faEllipsis, faTrashCan, faXmark, faFaceSmile, faPaperclip, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faVideo, faCircleExclamation, faDownload, faPlus, faEllipsis, faTrashCan, faXmark, faFaceSmile, faPaperclip, faImage, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import AAssignmentCard from "@/components/class/assignment/assignment_card";
 import GAssignmentCard from "@/components/class/general/assignment_card";
 import GPostCard from "@/components/class/general/post_card";
@@ -36,6 +36,7 @@ export default function Class() {
         organizer: '',
         meetingLink: ''
     }); // Form tạo cuộc họp
+    const [viewAssignment, setViewAssignment] = useState(null); // Bài tập đang xem chi tiết
     const fileInputRef = useRef(null);
     const postFileInputRef = useRef(null);
     const postImageInputRef = useRef(null);
@@ -62,7 +63,7 @@ export default function Class() {
             const end = textareaRef.current.selectionEnd;
             const newContent = postContent.substring(0, start) + emoji + postContent.substring(end);
             setPostContent(newContent);
-            
+
             // Focus lại vào textarea và đặt cursor sau emoji vừa thêm
             setTimeout(() => {
                 textareaRef.current?.focus();
@@ -159,7 +160,7 @@ export default function Class() {
 
     // Sinh link cuộc họp tự động
     const generateMeetingLink = () => {
-        const id = Date.now().toString(36) + Math.random().toString(36).slice(2,6);
+        const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
         return `https://meet.example.com/${id}`;
     };
 
@@ -178,7 +179,7 @@ export default function Class() {
         };
 
         setMeetings([...meetings, newMeeting]);
-        
+
         // Reset form
         setMeetingForm({
             title: '',
@@ -369,7 +370,10 @@ export default function Class() {
     return (
         <>
             <aside className="bg-indigo-800 w-[250px] h-screen z-3 fixed border-r-2 border-indigo-300 px-2 shadow-md p-4">
-                <h2 className="text-white text-2xl text-justify font-bold m-auto px-4 py-2">{classInfo.name}</h2>
+                <div className="flex flex-row">
+                    <button><FontAwesomeIcon icon={faAngleLeft} className="!w-[20px] !h-[20px] text-white hover:cursor-pointer" onClick={() => window.history.back()}/></button>
+                    <h2 className="text-white text-xl text-justify font-bold px-4 py-2">{classInfo.name}</h2>
+                </div>
                 <hr className="border-indigo-300 my-2"></hr>
                 <nav className="text-white text-sm text-justify font-normal flex flex-col gap-4 px-8 py-4 list-none">
                     <li
@@ -426,7 +430,7 @@ export default function Class() {
                                 <button className="p-4" onClick={() => setPostWindowOpen(false)}><FontAwesomeIcon icon={faXmark} className="!w-[14px] !h-[14px] hover:cursor-pointer" /></button>
                             </header>
                             <textarea ref={textareaRef} value={postContent} onChange={(e) => setPostContent(e.target.value)} className="w-full h-[250px] p-4 outline-none" placeholder="Viết nội dung bài đăng..."></textarea>
-                            
+
                             {/* Danh sách file đã attach (không ảnh) */}
                             {attachedFiles.length > 0 && (
                                 <div className="px-4 py-2 border-b border-gray-300">
@@ -441,7 +445,7 @@ export default function Class() {
                                     </div>
                                 </div>
                             )}
-                            
+
                             {/* Danh sách ảnh đã attach */}
                             {attachedImages.length > 0 && (
                                 <div className="px-4 py-2 border-b border-gray-300">
@@ -456,7 +460,7 @@ export default function Class() {
                                     </div>
                                 </div>
                             )}
-                            
+
                             <div className="relative w-full px-4 py-2 flex flex-row justify-between items-center border-t border-gray-300">
                                 <div className="flex flex-row gap-4">
                                     <button onClick={() => setEmojiPickerOpen(!emojiPickerOpen)}><FontAwesomeIcon icon={faFaceSmile} className="!w-[14px] !h-[14px] hover:cursor-pointer" /></button>
@@ -468,7 +472,7 @@ export default function Class() {
                                     <input ref={postImageInputRef} type="file" multiple onChange={handleAttachImage} style={{ display: 'none' }} accept="image/*" />
                                 </div>
                                 <button className="bg-indigo-600 text-white text-md rounded-sm py-1 px-2 shadow-sm hover:cursor-pointer hover:bg-indigo-700">Đăng bài</button>
-                                
+
                                 {/* Emoji Picker */}
                                 {emojiPickerOpen && (
                                     <div className="absolute bottom-12 left-0 bg-white border border-gray-300 rounded-lg shadow-lg p-3 w-[300px] grid grid-cols-8 gap-1 z-50">
@@ -496,8 +500,8 @@ export default function Class() {
                             <div className="p-4 space-y-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Tiêu đề cuộc họp *</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         name="title"
                                         value={meetingForm.title}
                                         onChange={handleMeetingFormChange}
@@ -508,7 +512,7 @@ export default function Class() {
 
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Mô tả</label>
-                                    <textarea 
+                                    <textarea
                                         name="description"
                                         value={meetingForm.description}
                                         onChange={handleMeetingFormChange}
@@ -520,7 +524,7 @@ export default function Class() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Thời gian bắt đầu *</label>
-                                        <input 
+                                        <input
                                             type="datetime-local"
                                             name="startTime"
                                             value={meetingForm.startTime}
@@ -530,7 +534,7 @@ export default function Class() {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Thời gian kết thúc</label>
-                                        <input 
+                                        <input
                                             type="datetime-local"
                                             name="endTime"
                                             value={meetingForm.endTime}
@@ -543,7 +547,7 @@ export default function Class() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Người tổ chức</label>
-                                        <input 
+                                        <input
                                             type="text"
                                             name="organizer"
                                             value={meetingForm.organizer}
@@ -555,7 +559,7 @@ export default function Class() {
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Link cuộc gọi</label>
                                         <div className="flex items-center gap-2">
-                                            <input 
+                                            <input
                                                 type="text"
                                                 name="meetingLink"
                                                 value={meetingForm.meetingLink}
@@ -569,13 +573,13 @@ export default function Class() {
                                 </div>
 
                                 <div className="flex flex-row gap-2 justify-end">
-                                    <button 
+                                    <button
                                         onClick={() => setMeetingWindowOpen(false)}
                                         className="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 font-medium text-sm"
                                     >
                                         Hủy
                                     </button>
-                                    <button 
+                                    <button
                                         onClick={handleCreateMeeting}
                                         className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 font-medium text-sm"
                                     >
@@ -594,16 +598,37 @@ export default function Class() {
                             <h3 className="text-2xl font-bold text-indigo-950 mb-4">Bài tập</h3>
                         </header>
                         <hr className="border-indigo-950"></hr>
-                        <div className="flex flex-row gap-2 my-3">
-                            <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'all' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'all' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('all') }}>Tất cả</a>
-                            <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'incomplete' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'incomplete' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('incomplete') }}>Chưa hoàn thành</a>
-                            <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'complete' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'complete' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('complete') }}>Đã hoàn thành</a>
-                            <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'overdue' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'overdue' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('overdue') }}>Quá hạn</a>
-                        </div>
-                        <div className="mt-4 text-indigo-900">
-                            <AAssignmentCard assignment={{ title: "Bài tập 1", description: "Mô tả bài tập 1", dueDate: "2027-07-01", isSubmitted: false }} />
-                            <AAssignmentCard assignment={{ title: "Bài tập 2", description: "Mô tả bài tập 2", dueDate: "2024-07-05", isSubmitted: true }} />
-                        </div>
+
+                        {!viewAssignment ? (
+                            <>
+                                <div className="flex flex-row gap-2 my-3">
+                                    <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'all' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'all' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('all') }}>Tất cả</a>
+                                    <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'incomplete' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'incomplete' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('incomplete') }}>Chưa hoàn thành</a>
+                                    <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'complete' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'complete' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('complete') }}>Đã hoàn thành</a>
+                                    <a className={`text-sm hover:font-medium hover:text-black hover:cursor-pointer ${assignmentTags === 'overdue' ? 'font-medium' : 'font-normal'} ${assignmentTags === 'overdue' ? 'text-black' : 'text-gray-500'}`} onClick={() => { setAssignmentTags('overdue') }}>Quá hạn</a>
+                                </div>
+                                <div className="mt-4 text-indigo-900">
+                                    <AAssignmentCard assignment={{ title: "Bài tập 1", description: "Mô tả bài tập 1", dueDate: "2027-07-01", isSubmitted: false }} onClick={(a) => { setViewAssignment(a); }} />
+                                    <AAssignmentCard assignment={{ title: "Bài tập 2", description: "Mô tả bài tập 2", dueDate: "2024-07-05", isSubmitted: true }} onClick={(a) => { setViewAssignment(a); }} />
+                                </div>
+                            </>
+
+                        ) : (
+                            <div className="bg-white b p-4">
+                                <div className="flex justify-between items-start">
+                                    <div className="flex-1">
+                                        <h4 className="text-xl font-semibold text-indigo-900">{viewAssignment.title}</h4>
+                                        <p className="text-gray-700 mt-2">{viewAssignment.description}</p>
+                                        <p className="text-sm text-gray-500 mt-3">Hạn nộp: {viewAssignment.dueDate}</p>
+                                        <p className="mt-3"><strong>Trạng thái:</strong> {viewAssignment.isSubmitted ? 'Đã nộp' : 'Chưa nộp'}</p>
+                                    </div>
+                                    <div className="ml-4 flex flex-col gap-2">
+                                        <button onClick={() => setViewAssignment(null)} className="px-3 py-1 border rounded text-sm">Quay lại</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                     </section>
                 )}
 
@@ -668,7 +693,7 @@ export default function Class() {
                         </div>
                     </section>
                 )}
-            </main>
+            </main >
         </>
     );
 }
