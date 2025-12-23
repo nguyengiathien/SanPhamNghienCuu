@@ -27,6 +27,13 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .main {
   display: flex;
   flex-direction: column;
