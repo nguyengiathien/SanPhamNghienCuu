@@ -54,18 +54,18 @@ export default function LessonPage() {
             <header>
                 <div className="w-full h-16 bg-white border-b border-gray-200 flex items-center px-6">
                     <button onClick={() => history.back()} className="mr-4 hover:cursor-pointer">
-                        <FontAwesomeIcon icon={faAngleLeft} className='!w-[25px] !h-[25px]' />
+                        <FontAwesomeIcon icon={faAngleLeft} className='!w-[25px] !h-[25px] text-indigo-800' />
                     </button>
-                    <h1 className="text-xl font-bold text-gray-800">Nội dung bài học</h1>
+                    <h1 className="text-xl font-bold text-indigo-800">Nội dung bài học</h1>
                 </div>
             </header>
             <aside className="w-[250px] h-full py-4 bg-white border-r border-gray-200 fixed">
                 <nav>
-                    <h2 className="px-4 text-xl font-bold my-3">Danh sách bài học</h2>
+                    <h2 className="px-4 text-xl text-indigo-700 font-bold my-3">Danh sách bài học</h2>
                     <ul className="space-y-2 overflow-auto h-[calc(100vh-100px)]">
                         {sections.map((s, idx) => (
-                            <li key={s.id} className={`border-b border-gray-200 text-sm text-gray-700 hover:bg-gray-200 `}>
-                                <button onClick={() => setCurrentIndex(idx)} className={`w-full px-8 py-4 text-left ${currentIndex === idx ? 'bg-gray-200 font-semibold' : ''} hover:cursor-pointer`}>{s.title}</button>
+                            <li key={s.id} className={`border-b border-gray-200 text-sm text-gray-700 hover:bg-indigo-500 hover:text-white `}>
+                                <button onClick={() => setCurrentIndex(idx)} className={`w-full px-8 py-4 text-left ${currentIndex === idx ? 'bg-indigo-500 font-semibold text-white' : ''} hover:cursor-pointer`}>{s.title}</button>
                             </li>
                         ))}
                     </ul>
