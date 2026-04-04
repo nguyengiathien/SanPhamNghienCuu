@@ -1,7 +1,11 @@
 
 'use strict';
+const fs = require('fs');
+const mysql2 = require("mysql2");
+const path = require('path');
 
 const { Sequelize } = require('sequelize');
+
 require('dotenv').config();
 
 const sequelize = new Sequelize(
@@ -12,8 +16,17 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     dialect: process.env.DB_DIALECT || 'mysql',
+    dialectModule: mysql2,
     logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: true,
+        ca: fs.readFileSync(path.join(__dirname, '..', 'ssl', 'isrgrootx1.pem'))
+      }
+    }
   }
+  
 );
 
 module.exports = sequelize;
