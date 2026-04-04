@@ -32,53 +32,16 @@ const db = require('./models');
 
 // ===== CONFIG =====
 const PORT = process.env.PORT || 3000;
-const allowedOrigins = [`${process.env.CLIENT_URL}`, 'http://localhost:3000', 'http://localhost:3001'];
 
 // ======================================================
 // CORS - PHẢI ĐẶT TRƯỚC TẤT CẢ ROUTES
 // ======================================================
 app.use(
   cors({
-    origin(origin, callback) {
-      // cho phép request không có origin (Postman, server-to-server...)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(new Error(`CORS blocked for origin: ${origin}`));
-    },
+    origin: process.env.CLIENT_URL || true,
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'Range'],
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    exposedHeaders: ['Content-Length', 'Content-Range', 'Accept-Ranges'],
-  })
-);
-
-// xử lý preflight cho mọi route
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization, Range'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Expose-Headers', 'Content-Length, Content-Range, Accept-Ranges');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204);
-  }
-
-  next();
-});
+  }),
+)
 
 // ======================================================
 // GLOBAL MIDDLEWARE
