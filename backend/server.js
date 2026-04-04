@@ -32,7 +32,7 @@ const db = require('./models');
 
 // ===== CONFIG =====
 const PORT = process.env.PORT || 3000;
-const allowedOrigins = ['http://localhost:3001', 'http://localhost:3000'];
+const allowedOrigins = [`${process.env.CLIENT_URL}`, 'http://localhost:3000', 'http://localhost:3001'];
 
 // ======================================================
 // CORS - PHẢI ĐẶT TRƯỚC TẤT CẢ ROUTES
