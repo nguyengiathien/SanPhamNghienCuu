@@ -1,0 +1,46 @@
+========================
+HUONG DẪN CÀI ĐẶT HỆ THỐNG E-LEARNING
+========================
+
+Yêu cầu phần mềm và môi trường phát triển
+Để cài đặt và chạy hệ thống, máy tính cần chuẩn bị các công cụ sau:
+- Hệ điều hành: Windows 10/11 hoặc tương đương
+- Node.js: khuyến nghị phiên bản 18 trở lên
+- npm: đi kèm khi cài Node.js
+- MySQL Server: dùng để lưu trữ dữ liệu
+- IDE/Code Editor: Visual Studio Code
+- Trình duyệt web: Google Chrome, Microsoft Edge hoặc Firefox
+- Công cụ quản lý cơ sở dữ liệu: MySQL Workbench hoặc phpMyAdmin
+- Công cụ kiểm thử API: Postman (khuyến nghị)
+
+
+
+Dự án gồm 2 phần chính:
+- Thư mục frontend: giao diện người dùng
+- Thư mục backend: xử lý nghiệp vụ, API, kết nối cơ sở dữ liệu
+
+
+
+Cài đặt backend
+Bước 1: mở terminal tại thư mục backend.
+Bước 2: cài đặt các thư viện cần thiết bằng lệnh:
+npm install
+Bước 3: Khởi động backend bằng lệnh nodemon server.js
+
+Cài đặt frontend
+Bước 1: mở terminal tại thư mục frontend.
+Bước 2: cài đặt các thư viện cần thiết:
+npm install
+Bước 3: khởi đông frontend bằng lệnh npm run dev
+
+
+
+
+
+
+
+
+
+
+
+

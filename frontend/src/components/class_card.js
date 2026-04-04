@@ -1,10 +1,26 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faSquarePhone, faBook } from "@fortawesome/free-solid-svg-icons";
 
 export default function CurrentClassesCard({ classes }) {
+    const router = useRouter();
+    
+    const handleClick = () => {
+        if (classes.id || classes.class_id) {
+            router.push(`/classes/${classes.id || classes.class_id}`);
+        }
+    };
+
     return (
         <div className="course-item border border-emerald-200 bg-emerald-700 rounded-lg p-3 shadow-xs hover:shadow-md transition-shadow duration-200 w-[250px] h-[120px] mx-auto relative">
-            <h3 className="absolute bottom-0 left-0 font-semibold text-lg text-white py-3 px-4 hover:underline hover:decoration-solid hover:cursor-pointer">{classes.name}</h3>
+            <h3 
+                className="absolute bottom-0 left-0 font-semibold text-lg text-white py-3 px-4 hover:underline hover:decoration-solid hover:cursor-pointer"
+                onClick={handleClick}
+            >
+                {classes.name || classes.className}
+            </h3>
             <div className="absolute top-0 right-0">
                 <div className="relative w-[40px] h-[40px] group/icon">
                     <FontAwesomeIcon icon={faEllipsis} className="text-white !w-[20px] absolute py-3 pr-3 top-0 right-0 transition hover:cursor-pointer" />

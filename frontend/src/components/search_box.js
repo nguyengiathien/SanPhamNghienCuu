@@ -1,29 +1,45 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export default function SearchBox({ placeholder, value, onSubmit }) {
-    function handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            onSubmit(value);
-        }
-    }
-    function handleSubmit(event) {
-        event.preventDefault();
-        onSubmit(value);
-    }
-    
-    return (
-        <div className="relative flex-row items-center justify-center inline-block">
-            <input
-                type="text"
-                placeholder={placeholder}
-                value={value}
-                onChange={(e) => onSubmit(e.target.value)}
-                className="border bg-white border-indigo-300 rounded-full shadow-md py-2 px-4 w-full xl:max-w-[500px] xl:min-w-[400px] sm:min-w-[300px] sm:max-w-[700px] outline-none focus:ring-1 focus:ring-indigo-500 text-xs"
-            />
-            <button className="text-sm absolute right-0 top-0 h-full rounded-r-full py-1 px-2 font-medium shadow-2xs hover:bg-indigo-700 hover:shadow-none focus:outline-none cursor-pointer bg-indigo-400" >
-                Search
-            </button>
-        </div>
-    );
+export default function SearchBox({
+  placeholder = "Tìm kiếm...",
+  value,
+  onChange,
+  onSubmit,
+}) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit?.(value?.trim?.() ?? value);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full flex justify-center"
+    >
+      <div className="relative w-full max-w-[560px]">
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange?.(e.target.value)}
+          className="w-full h-11 bg-white border border-indigo-300 rounded-full shadow-md
+                     pl-4 pr-[120px] text-sm outline-none
+                     focus:ring-2 focus:ring-indigo-400"
+        />
+
+        <button
+          type="submit"
+          className="absolute right-1 top-1/2 -translate-y-1/2
+                     h-9 px-4 rounded-full
+                     bg-indigo-500 hover:bg-indigo-600
+                     text-white font-semibold text-sm
+                     flex items-center gap-2 shadow"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          Search
+        </button>
+      </div>
+    </form>
+  );
 }

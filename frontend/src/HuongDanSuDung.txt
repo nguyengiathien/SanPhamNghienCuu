@@ -1,0 +1,218 @@
+========================
+HUONG DẪN SỬ DỤNG, BIÊN DỊCH VÀ CHẠY CHƯƠNG TRÌNH
+========================
+
+1. Giới thiệu
+Tài liệu này hướng dẫn cách khởi động và sử dụng hệ thống E-Learning sau khi đã cài đặt đầy đủ môi trường, thư viện và cơ sở dữ liệu.
+
+2. Biên dịch và chạy backend
+Bước 1: mở terminal tại thư mục backend.
+
+Bước 2: chạy lệnh:
+npm install
+
+Bước 3: khởi động backend:
+nodemon server.js
+
+Nếu backend chạy thành công, terminal sẽ hiển thị thông báo tương tự:
+- Server đang chạy tại http://localhost:3000
+- Kết nối CSDL thành công
+
+
+
+3. Biên dịch và chạy frontend
+Bước 1: mở terminal tại thư mục frontend.
+
+Bước 2: chạy lệnh:
+npm install
+
+Bước 3: chạy frontend ở chế độ phát triển:
+npm run dev
+
+Sau khi chạy thành công, frontend thường hoạt động tại:
+http://localhost:3001
+hoặc cổng mà Next.js tự cấp.
+
+
+4. Trình tự chạy chương trình
+Để hệ thống hoạt động đúng, nên chạy theo thứ tự:
+- Khởi động MySQL
+- Khởi động backend
+- Khởi động frontend
+- Mở trình duyệt và truy cập hệ thống
+
+5. Cách sử dụng cơ bản
+
+5.1. Đăng ký tài khoản
+- Truy cập trang đăng ký
+- Nhập họ tên, tên đăng nhập, email, mật khẩu, xác nhận mật khẩu
+- Chọn vai trò phù hợp nếu hệ thống cho phép
+- Nhấn nút đăng ký
+
+5.2. Đăng nhập
+- Truy cập trang đăng nhập
+- Nhập email hoặc username
+- Nhập mật khẩu
+- Nhấn nút đăng nhập
+
+Nếu đăng nhập thành công:
+- admin sẽ được điều hướng đến trang quản trị
+- provider sẽ được điều hướng đến trang provider
+- student sẽ được điều hướng về trang chủ hoặc trang học tập
+
+5.3. Quên mật khẩu
+- Truy cập trang quên mật khẩu
+- Nhập email đã đăng ký
+- Nhận liên kết đặt lại mật khẩu qua email hoặc link test trong môi trường development
+- Mở liên kết
+- Nhập mật khẩu mới
+- Xác nhận lại mật khẩu
+- Lưu thay đổi
+
+6. Sử dụng theo vai trò
+
+6.1. Người quản trị (Admin)
+Admin có thể:
+- quản lý người dùng
+- quản lý khóa học
+- quản lý dữ liệu hệ thống
+- kiểm tra các chức năng quản trị khác
+
+6.2. Nhà cung cấp khóa học (Provider)
+Provider có thể:
+- tạo khóa học
+- chỉnh sửa khóa học
+- xóa khóa học
+- tạo bài học cho khóa học
+- upload video cho bài học
+- thêm checkpoint câu hỏi trong video
+- chỉnh sửa, xóa checkpoint
+- tạo quiz cuối khóa
+- thêm câu hỏi vào quiz
+- lưu quiz sau khi đủ số câu hỏi
+
+6.3. Học viên (Student)
+Học viên có thể:
+- đăng ký, đăng nhập
+- xem danh sách khóa học
+- xem chi tiết khóa học
+- học bài học
+- xem video
+- trả lời checkpoint trong video
+- làm quiz cuối khóa
+- theo dõi tiến độ học tập
+
+7. Một số chức năng vận hành chính
+
+7.1. Tạo khóa học
+- vào trang Provider > Khóa học
+- nhập tên khóa học, mô tả, mức độ
+- chọn danh mục hoặc ngành học
+- upload thumbnail nếu có
+- nhấn tạo khóa học
+
+7.2. Tạo bài học
+- vào trang Provider > Bài học
+- chọn khóa học
+- nhập tên bài học
+- nhập thứ tự bài học hoặc để hệ thống thêm vào cuối
+- nhấn tạo bài học
+
+7.3. Upload video và thêm câu hỏi trong video
+- vào trang Provider > Video + Câu hỏi
+- chọn khóa học
+- chọn bài học
+- chọn file video MP4
+- nhấn upload video
+- sau khi có video, nhập thời điểm checkpoint
+- nhập nội dung câu hỏi
+- nhập các đáp án
+- chọn đáp án đúng
+- nhấn thêm checkpoint
+- có thể sửa hoặc xóa checkpoint nếu cần
+
+7.4. Tạo quiz cuối khóa
+- vào trang Provider > Final Quiz
+- chọn khóa học
+- tạo quiz với tên, thời gian, số câu mục tiêu
+- thêm từng câu hỏi vào quiz
+- sau khi đủ số câu đã đặt, nhấn lưu quiz để hoàn tất
+
+8. Kiểm tra và chạy thử API
+Có thể sử dụng Postman để kiểm tra các API chính:
+- /api/auth/login
+- /api/auth/signup
+- /api/auth/me
+- /api/courses
+- /api/lessons
+- /api/tests
+- /api/checkpoints
+- các route khác tùy chức năng
+
+Khi gọi API cần chú ý:
+- một số route yêu cầu token JWT
+- token được gửi qua header:
+Authorization: Bearer <token>
+
+9. Các lỗi thường gặp khi chạy chương trình
+
+9.1. Lỗi không kết nối được cơ sở dữ liệu
+Nguyên nhân:
+- MySQL chưa chạy
+- sai DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD
+- chưa tạo database elearning_dev
+
+Cách xử lý:
+- kiểm tra lại MySQL
+- kiểm tra file .env backend
+- kiểm tra import SQL
+
+9.2. Lỗi CORS
+Nguyên nhân:
+- backend chưa bật CORS đúng
+- route đặt trước middleware CORS
+- frontend gọi sai cổng backend
+
+Cách xử lý:
+- kiểm tra server.js
+- kiểm tra NEXT_PUBLIC_API_BASE
+- kiểm tra request trong Network tab
+
+9.3. Lỗi JWT hoặc đăng nhập
+Nguyên nhân:
+- JWT_SECRET chưa đúng
+- token hết hạn
+- token không gửi lên header
+
+Cách xử lý:
+- kiểm tra file .env
+- đăng nhập lại để lấy token mới
+- kiểm tra localStorage và request headers
+
+9.4. Lỗi upload file
+Nguyên nhân:
+- file sai định dạng
+- backend chưa cấu hình multer đúng
+- thư mục uploads chưa đúng quyền
+
+Cách xử lý:
+- chọn đúng loại file
+- kiểm tra route upload
+- kiểm tra backend log
+
+9.5. Lỗi gửi email quên mật khẩu
+Nguyên nhân:
+- thiếu cấu hình MAIL_HOST, MAIL_USER, MAIL_PASS
+- sai App Password Gmail
+- backend chưa restart sau khi đổi .env
+
+Cách xử lý:
+- kiểm tra lại .env
+- dùng App Password
+- restart backend
+
+10. Dừng chương trình
+Để dừng frontend hoặc backend đang chạy trong terminal:
+- nhấn tổ hợp phím Ctrl + C
+
+
