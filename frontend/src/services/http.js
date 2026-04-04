@@ -2,7 +2,7 @@
  * HTTP client với token attachment
  */
 
-const API_BASE_URL =  `${process.env.NEXT_PUBLIC_API_BASE/api}` || 'http://localhost:3000/api';
+const API_BASE_URL =  `${process.env.NEXT_PUBLIC_API_BASE}/api` || 'http://localhost:3000/api';
 
 // Sử dụng Next.js API proxy
 const getProxyUrl = (endpoint) => {
